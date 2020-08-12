@@ -23,7 +23,7 @@ class BotsPage extends React.Component {
       bots: this.state.bots.map(bot => {
         const newBot = {...bot};
         if (b.id === newBot.id) {
-          newBot.chosen = true;
+          newBot.chosen = !newBot.chosen;
         }
         return newBot
       })
@@ -37,7 +37,7 @@ class BotsPage extends React.Component {
           <BotCollection bots={this.state.bots.filter(chosenBot => !chosenBot.chosen)} handleChooseBot={this.handleChooseBot}/>
         </div>
         <div>
-          <YourBotArmy myBots={this.state.bots.filter(chosenBot => chosenBot.chosen)}/>
+          <YourBotArmy myBots={this.state.bots.filter(chosenBot => chosenBot.chosen)} handleChooseBot={this.handleChooseBot}/>
         </div>
       </div>
     );
