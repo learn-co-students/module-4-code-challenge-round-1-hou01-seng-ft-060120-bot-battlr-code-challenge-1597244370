@@ -3,7 +3,7 @@ import BotCard from "../components/BotCard";
 import BotCollection from "./BotCollection";
 
 class YourBotArmy extends React.Component {
-	//your bot army code here...
+
 
 	handleClick = e => {
 		this.props.army(e);

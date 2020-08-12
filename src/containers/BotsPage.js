@@ -8,10 +8,10 @@ class BotsPage extends React.Component {
 	state = {
 		bots: "",
 		army: "",
-		cliked: false,
+		cardCliked: false,
 		botSpecs: ""
   };
-
+  
   componentDidMount() {
 		fetch("https://bot-battler-api.herokuapp.com/api/v1/bots")
 			.then(res => res.json())
@@ -22,17 +22,9 @@ class BotsPage extends React.Component {
 			});
 	}
 
-  
-  isClicked = bot => {
-		this.setState({
-			cliked: !this.state.cliked,
-			botSpecs: bot
-		});
-	};
-
-
-	getBots = yourBot => {
+	collectBots = yourBot => {
 		if (this.state.army.includes(yourBot)) {
+	
 			this.setState({
 				army: this.state.army.filter(bot => bot !== yourBot)
 			});
@@ -43,18 +35,26 @@ class BotsPage extends React.Component {
 		}
 	};
 
+	isClicked = bot => {
+		this.setState({
+			cardCliked: !this.state.cardCliked,
+			botSpecs: bot
+		});
+	};
 
+	
 	render() {
 		return (
 			<div>
-				<YourBotArmy yourBots={this.state.army} army={this.getBots} />
+				<YourBotArmy yourBots={this.state.army} army={this.collectBots} />
 				{!this.state.cardCliked ? (
 					<BotCollection allBots={this.state.bots} clicked={this.isClicked} />
 				) : (
 					<BotSpecs
-						bot={this.state.botSpecs}
+				
 						clicked={this.isClicked}
-						army={this.getBots}
+            army={this.collectBots}
+            bot={this.state.botSpecs}
 					/>
 				)}
 			</div>
