@@ -4,6 +4,11 @@
   max-width: 100%;
 }
 
+.ui.segment .bot-search {
+  box-shadow: none;
+  border: none;
+}
+
 .ui.grid > .row.bot-army-row {
   flex-wrap: nowrap;
   min-height: 100%;
