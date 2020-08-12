@@ -1,62 +1,72 @@
-import React from "react";
+import React, { Component } from "react";
 
-const BotCard = props => {
-  const { bot } = props;
+export default class BotCard extends Component {
 
-  let botType;
-
-  switch (bot.bot_class) {
-    case "Assault":
-      botType = <i className="icon military" />;
-      break;
-    case "Defender":
-      botType = <i className="icon shield" />;
-      break;
-    case "Support":
-      botType = <i className="icon ambulance" />;
-      break;
-    default:
-      botType = <div />;
+  handleClick = () => {
+		if (this.props.taken === true) {
+		  this.props.remove(this.props.bot)
+		} else {
+		  this.props.enlist(this.props.bot)
+		}
   }
 
-  return (
-    <div className="ui column">
-      <div
-        className="ui card"
-        key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
-      >
-        <div className="image">
-          <img alt="oh no!" src={bot.avatar_url} />
-        </div>
-        <div className="content">
-          <div className="header">
-            {bot.name} {botType}
-          </div>
+  render() {
+    const { bot } = this.props;
 
-          <div className="meta text-wrap">
-            <small>{bot.catchphrase}</small>
-          </div>
-        </div>
-        <div className="extra content">
-          <span>
-            <i className="icon heartbeat" />
-            {bot.health}
-          </span>
+    let botType;
+  
+    switch (bot.bot_class) {
+      case "Assault":
+        botType = <i className="icon military" />;
+        break;
+      case "Defender":
+        botType = <i className="icon shield" />;
+        break;
+      case "Support":
+        botType = <i className="icon ambulance" />;
+        break;
+      default:
+        botType = <div />;
+    }
 
-          <span>
-            <i className="icon lightning" />
-            {bot.damage}
-          </span>
-          <span>
-            <i className="icon shield" />
-            {bot.armor}
-          </span>
+    return (
+      <div className="ui column">
+        <div
+          className="ui card"
+          key={bot.id}
+          onClick={this.handleClick}
+        >
+          <div className="image">
+            <img alt="oh no!" src={bot.avatar_url} />
+          </div>
+          <div className="content">
+            <div className="header">
+              {bot.name} {botType}
+            </div>
+  
+            <div className="meta text-wrap">
+              <small>{bot.catchphrase}</small>
+            </div>
+          </div>
+          <div className="extra content">
+            <span>
+              <i className="icon heartbeat" />
+              {bot.health}
+            </span>
+  
+            <span>
+              <i className="icon lightning" />
+              {bot.damage}
+            </span>
+            <span>
+              <i className="icon shield" />
+              {bot.armor}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+}
 
-};
 
-export default BotCard;
