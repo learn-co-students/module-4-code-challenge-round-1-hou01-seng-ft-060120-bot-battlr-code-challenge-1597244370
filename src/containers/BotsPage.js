@@ -34,10 +34,10 @@ class BotsPage extends React.Component {
     return (
       <div>
         <div>
-          <BotCollection bots={this.state.bots.filter(chosenBot => !chosenBot.chosen)} handleChooseBot={this.handleChooseBot}/>
+          <YourBotArmy myBots={this.state.bots.filter(chosenBot => chosenBot.chosen)} handleChooseBot={this.handleChooseBot}/>
         </div>
         <div>
-          <YourBotArmy myBots={this.state.bots.filter(chosenBot => chosenBot.chosen)} handleChooseBot={this.handleChooseBot}/>
+          <BotCollection bots={this.state.bots.filter(chosenBot => !chosenBot.chosen)} handleChooseBot={this.handleChooseBot}/>
         </div>
       </div>
     );
